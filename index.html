@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Notre Séjour 🗺️ Avril 2026</title>
+<title>Notre Séjour — Avril 2026</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -13,11 +13,9 @@
     --terracotta: #C4622D;
     --sage: #7A9E7E;
     --gold: #D4A853;
-    --soft: #EDE0CF;
+    --green: #3a7d44;
   }
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   body {
     background-color: var(--cream);
     color: var(--brown);
@@ -27,273 +25,105 @@
     overflow-x: hidden;
   }
 
-  /* HERO */
-  .hero {
-    background: linear-gradient(160deg, #3D2B1F 0%, #6B4226 60%, #C4622D 100%);
-    padding: 60px 24px 48px;
+  .trip-wrap { max-width: 480px; margin: 0 auto; padding: 0 16px 40px; }
+
+  .trip-hero {
+    background: linear-gradient(150deg, #3D2B1F 0%, #7B3F1E 55%, #C4622D 100%);
+    border-radius: 20px;
+    padding: 44px 24px 32px;
     text-align: center;
+    margin: 16px 0 -16px;
     position: relative;
     overflow: hidden;
   }
-
-  .hero::before {
+  .trip-hero::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    opacity: 0.5;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");
   }
-
   .hero-badge {
     display: inline-block;
-    background: rgba(255,255,255,0.15);
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(255,255,255,0.25);
-    color: #fff;
+    border: 1px solid rgba(255,255,255,0.3);
+    color: rgba(255,255,255,0.85);
     font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 3px;
+    letter-spacing: 2.5px;
     text-transform: uppercase;
-    padding: 6px 16px;
+    padding: 4px 14px;
     border-radius: 100px;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
     position: relative;
   }
-
-  .hero h1 {
+  .trip-hero h1 {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(36px, 9vw, 54px);
+    font-size: clamp(32px, 8vw, 42px);
+    font-weight: 400;
     color: #fff;
-    line-height: 1.1;
-    position: relative;
-    margin-bottom: 8px;
-  }
-
-  .hero h1 em {
-    font-style: italic;
-    color: var(--gold);
-  }
-
-  .hero-sub {
-    color: rgba(255,255,255,0.7);
-    font-size: 14px;
-    letter-spacing: 1px;
-    position: relative;
-    margin-bottom: 32px;
-  }
-
-  .hero-pills {
-    display: flex;
-    gap: 8px;
-    justify-content: center;
-    flex-wrap: wrap;
+    line-height: 1.15;
+    margin: 0 0 8px;
     position: relative;
   }
-
-  .pill {
-    background: rgba(255,255,255,0.12);
-    border: 1px solid rgba(255,255,255,0.2);
-    color: rgba(255,255,255,0.9);
-    font-size: 12px;
-    padding: 5px 12px;
+  .trip-hero h1 em { font-style: italic; color: var(--gold); }
+  .hero-sub { font-size: 13px; color: rgba(255,255,255,0.6); margin: 0 0 20px; position: relative; }
+  .hero-pills { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; position: relative; }
+  .hero-pill {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.18);
+    color: rgba(255,255,255,0.85);
+    font-size: 11px;
+    padding: 4px 10px;
     border-radius: 100px;
   }
 
-  /* INTRO CARD */
   .intro-card {
-    margin: -20px 16px 0;
     background: #fff;
     border-radius: 20px;
-    padding: 24px;
-    box-shadow: 0 8px 40px rgba(61,43,31,0.12);
+    padding: 20px;
+    margin: 0 0 24px;
     position: relative;
     z-index: 2;
+    box-shadow: 0 8px 32px rgba(61,43,31,0.1);
   }
+  .intro-card p { font-size: 14px; line-height: 1.7; color: #6B4226; }
+  .intro-card strong { color: var(--terracotta); font-weight: 500; }
 
-  .intro-card p {
-    font-size: 15px;
-    line-height: 1.7;
-    color: #6B4226;
-  }
-
-  .intro-card strong {
-    color: var(--terracotta);
-    font-weight: 500;
-  }
-
-  /* SECTION */
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 13px;
+  .section-label {
+    font-size: 11px;
     letter-spacing: 3px;
     text-transform: uppercase;
     color: var(--terracotta);
-    padding: 32px 24px 12px;
-  }
-
-  /* DAY CARDS */
-  .days {
-    padding: 0 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    padding-bottom: 16px;
+    padding: 8px 0 12px;
+    font-weight: 500;
   }
 
   .day-card {
     background: #fff;
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 4px 20px rgba(61,43,31,0.07);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 16px rgba(61,43,31,0.07);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
   }
+  .day-row { display: flex; align-items: center; min-height: 76px; }
+  .day-stripe { width: 5px; align-self: stretch; flex-shrink: 0; }
+  .day-info { flex: 1; padding: 14px 12px 14px 16px; }
+  .day-date { font-size: 10px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: #aaa; margin-bottom: 3px; }
+  .day-name { font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 400; color: var(--brown); line-height: 1.2; }
+  .day-sub { font-size: 11px; color: #aaa; margin-top: 3px; }
+  .day-right { display: flex; align-items: center; gap: 6px; padding-right: 16px; flex-shrink: 0; }
+  .day-icon { font-size: 26px; }
+  .day-chevron { font-size: 18px; color: #ccc; transition: transform 0.25s ease; display: inline-block; line-height: 1; }
+  .day-card.open .day-chevron { transform: rotate(180deg); }
 
-  .day-card:active {
-    transform: scale(0.98);
-  }
+  .day-body { display: none; border-top: 1px solid var(--warm); padding: 18px 20px 20px 24px; }
+  .day-body.open { display: block; }
+  .day-card.highlight .day-row { background: linear-gradient(135deg, #FDF0E8 0%, #fff 100%); }
 
-  .day-header {
-    display: flex;
-    align-items: stretch;
-    min-height: 80px;
-  }
-
-  .day-accent {
-    width: 8px;
-    flex-shrink: 0;
-  }
-
-  .day-meta {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 16px 16px 16px 14px;
-    flex: 1;
-  }
-
-  .day-label {
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    color: #aaa;
-    margin-bottom: 4px;
-  }
-
-  .day-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 20px;
-    color: var(--brown);
-    line-height: 1.2;
-  }
-
-  .day-subtitle {
-    font-size: 12px;
-    color: #999;
-    margin-top: 3px;
-  }
-
-  .day-emoji {
-    font-size: 32px;
-    display: flex;
-    align-items: center;
-    padding: 16px 18px 16px 0;
-    flex-shrink: 0;
-  }
-
-  /* Collapsible body */
-  .day-body {
-    display: none;
-    border-top: 1px solid var(--warm);
-  }
-
-  .day-body.open {
-    display: block;
-  }
-
-  .day-body-inner {
-    padding: 20px;
-  }
-
-  /* Highlight card (Disney, Paris) */
-  .day-card.highlight .day-header {
-    background: linear-gradient(135deg, var(--warm) 0%, #fff 100%);
-  }
-
-  /* Activities */
-  .activity {
-    display: flex;
-    gap: 12px;
-    margin-bottom: 16px;
-    align-items: flex-start;
-  }
-
-  .activity:last-child {
-    margin-bottom: 0;
-  }
-
-  .activity-time {
-    font-size: 11px;
-    font-weight: 500;
-    color: var(--terracotta);
-    min-width: 42px;
-    padding-top: 2px;
-    letter-spacing: 0.5px;
-  }
-
-  .activity-content {}
-
-  .activity-name {
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--brown);
-    margin-bottom: 3px;
-  }
-
-  .activity-desc {
-    font-size: 13px;
-    color: #888;
-    line-height: 1.5;
-  }
-
-  .activity-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    margin-top: 5px;
-    flex-shrink: 0;
-  }
-
-  /* Tips */
-  .tip-box {
-    background: var(--warm);
-    border-radius: 12px;
-    padding: 14px 16px;
-    margin-top: 16px;
-    display: flex;
-    gap: 10px;
-    align-items: flex-start;
-  }
-
-  .tip-icon {
-    font-size: 16px;
-    flex-shrink: 0;
-    margin-top: 1px;
-  }
-
-  .tip-text {
-    font-size: 13px;
-    color: #6B4226;
-    line-height: 1.5;
-  }
-
-  /* Special badge */
-  .special-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    background: var(--terracotta);
-    color: #fff;
+  .special-tag {
+    display: inline-block;
+    background: #FDF0E8;
+    color: #9B4516;
     font-size: 10px;
     font-weight: 500;
     letter-spacing: 1.5px;
@@ -303,416 +133,318 @@
     margin-bottom: 14px;
   }
 
-  /* Free days card */
-  .free-card {
-    background: linear-gradient(135deg, var(--sage) 0%, #5a8060 100%);
-    color: #fff;
+  .act { display: flex; gap: 10px; margin-bottom: 14px; align-items: flex-start; }
+  .act:last-of-type { margin-bottom: 0; }
+  .act-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; margin-top: 6px; }
+  .act-time { font-size: 11px; font-weight: 500; color: var(--terracotta); min-width: 42px; padding-top: 1px; flex-shrink: 0; }
+  .act-time.g { color: var(--green); }
+  .act-name { font-size: 13px; font-weight: 500; color: var(--brown); margin-bottom: 3px; }
+  .act-desc { font-size: 12px; color: #888; line-height: 1.55; }
+
+  .tip {
+    background: var(--warm);
+    border-left: 3px solid var(--terracotta);
+    border-radius: 0 10px 10px 0;
+    padding: 10px 14px;
+    margin-top: 14px;
+    font-size: 12px;
+    color: #6B4226;
+    line-height: 1.55;
+  }
+  .tip strong { color: var(--brown); font-weight: 500; }
+
+  .dinner-note {
+    background: #EDF5EE;
+    border-left: 3px solid var(--green);
+    border-radius: 0 10px 10px 0;
+    padding: 10px 14px;
+    margin-top: 10px;
+    font-size: 12px;
+    color: #2E5E35;
+    line-height: 1.55;
+  }
+  .dinner-note strong { color: var(--green); font-weight: 500; }
+
+  .free-block {
+    background: linear-gradient(135deg, #7A9E7E 0%, #4d7a52 100%);
     border-radius: 20px;
-    padding: 24px;
-    margin: 0 16px 12px;
-    box-shadow: 0 4px 20px rgba(90,128,96,0.3);
-  }
-
-  .free-card h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    margin-bottom: 6px;
-  }
-
-  .free-card p {
-    font-size: 13px;
-    opacity: 0.85;
-    line-height: 1.6;
-  }
-
-  /* Checklist */
-  .checklist {
-    padding: 0 16px 16px;
-  }
-
-  .checklist-card {
-    background: var(--brown);
-    border-radius: 20px;
-    padding: 24px;
-    color: #fff;
-  }
-
-  .checklist-card h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 20px;
-    margin-bottom: 16px;
-    color: var(--gold);
-  }
-
-  .check-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
+    padding: 24px 20px;
     margin-bottom: 10px;
-    font-size: 13px;
-    color: rgba(255,255,255,0.85);
-    line-height: 1.5;
   }
+  .free-block h3 { font-family: 'Playfair Display', serif; font-size: 21px; font-weight: 400; color: #fff; margin: 0 0 8px; }
+  .free-block p { font-size: 13px; color: rgba(255,255,255,0.82); line-height: 1.6; margin: 0; }
 
-  .check-item::before {
-    content: '→';
-    color: var(--gold);
-    flex-shrink: 0;
-    font-weight: 500;
-    margin-top: 1px;
-  }
+  .checklist-block { background: var(--brown); border-radius: 20px; padding: 24px 20px; margin-bottom: 10px; }
+  .checklist-block h3 { font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 400; color: var(--gold); margin: 0 0 16px; }
+  .chk { display: flex; gap: 8px; font-size: 12px; color: rgba(255,255,255,0.82); line-height: 1.55; margin-bottom: 10px; align-items: flex-start; }
+  .chk-arrow { color: var(--gold); flex-shrink: 0; font-weight: 500; margin-top: 1px; }
 
-  /* Departure */
-  .departure {
-    margin: 0 16px 32px;
-    background: linear-gradient(135deg, #e8ddd0 0%, var(--warm) 100%);
-    border-radius: 20px;
-    padding: 24px;
-    text-align: center;
-  }
-
-  .departure-emoji {
-    font-size: 40px;
-    margin-bottom: 8px;
-  }
-
-  .departure h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 20px;
-    color: var(--brown);
-    margin-bottom: 6px;
-  }
-
-  .departure p {
-    font-size: 13px;
-    color: #888;
-  }
-
-  /* Timeline line */
-  .timeline-wrap {
-    position: relative;
-  }
-
-  /* Expand indicator */
-  .expand-icon {
-    font-size: 18px;
-    color: #ccc;
-    display: flex;
-    align-items: center;
-    padding-right: 16px;
-    transition: transform 0.3s ease;
-  }
-
-  .day-card.open .expand-icon {
-    transform: rotate(180deg);
-  }
-
-  /* Scroll fade in */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(16px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .day-card, .free-card, .checklist-card, .departure {
-    animation: fadeUp 0.5s ease both;
-  }
+  .depart-block { background: var(--warm); border-radius: 20px; padding: 24px 20px; text-align: center; }
+  .depart-block .d-icon { font-size: 32px; margin-bottom: 8px; }
+  .depart-block h3 { font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 400; color: var(--brown); margin: 0 0 4px; }
+  .depart-block p { font-size: 12px; color: #999; }
 </style>
 </head>
 <body>
+<div class="trip-wrap">
 
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-badge">✈️ Voyage en famille</div>
-  <h1>Notre <em>Séjour</em><br>en Île-de-France</h1>
-  <p class="hero-sub">20 → 27 Avril 2026 · Torcy, Seine-et-Marne</p>
-  <div class="hero-pills">
-    <span class="pill">👶 Bébé 3 mois</span>
-    <span class="pill">🧒 2 ans ½</span>
-    <span class="pill">🏡 Chez la famille</span>
-    <span class="pill">🎢 Disney</span>
-    <span class="pill">🗼 Paris</span>
+  <div class="trip-hero">
+    <div class="hero-badge">Voyage en famille</div>
+    <h1>Notre <em>Séjour</em><br>Île-de-France</h1>
+    <p class="hero-sub">20 → 27 Avril 2026 · Chez les parents</p>
+    <div class="hero-pills">
+      <span class="hero-pill">Bébé 3 mois</span>
+      <span class="hero-pill">2 ans et demi</span>
+      <span class="hero-pill">Chez les parents</span>
+      <span class="hero-pill">Disney</span>
+      <span class="hero-pill">Paris</span>
+    </div>
   </div>
-</div>
 
-<!-- INTRO -->
-<div class="intro-card">
-  <p>Un séjour pensé <strong>pour toute la famille</strong> — rythme adapté aux petits, journées équilibrées entre découverte et repos. <strong>Logement chez la famille</strong> à Torcy, avec deux grandes escapades : Disney et Paris version douce.</p>
-</div>
+  <div class="intro-card">
+    <p>Un séjour pensé <strong>pour toute la famille</strong> — rythme adapté aux petits, journées équilibrées entre découverte et repos. Logement <strong>chez les parents</strong>, avec deux grandes escapades : Disney Studios et Paris.</p>
+  </div>
 
-<p class="section-title">Le Programme</p>
-
-<!-- DAYS -->
-<div class="days">
+  <p class="section-label">Le programme jour par jour</p>
 
   <!-- Lundi 20 -->
-  <div class="day-card" onclick="toggle(this)">
-    <div class="day-header">
-      <div class="day-accent" style="background:#C4622D"></div>
-      <div class="day-meta">
-        <div class="day-label">Lundi 20 Avril</div>
-        <div class="day-title">Arrivée</div>
-        <div class="day-subtitle">Installation & retrouvailles</div>
+  <div class="day-card" onclick="tog(this)">
+    <div class="day-row">
+      <div class="day-stripe" style="background:#C4622D"></div>
+      <div class="day-info">
+        <div class="day-date">Lundi 20 Avril</div>
+        <div class="day-name">Arrivée</div>
+        <div class="day-sub">Phô chez maman le soir</div>
       </div>
-      <div class="day-emoji">🏡</div>
-      <div class="expand-icon">⌄</div>
+      <div class="day-right"><span class="day-icon">🏡</span><span class="day-chevron">⌄</span></div>
     </div>
     <div class="day-body">
-      <div class="day-body-inner">
-        <div class="activity">
-          <div class="activity-dot" style="background:#C4622D;margin-top:6px"></div>
-          <div class="activity-time">Soir</div>
-          <div class="activity-content">
-            <div class="activity-name">Arrivée chez la famille</div>
-            <div class="activity-desc">Installation, retrouvailles, repas ensemble. Coucher tôt — les enfants ont besoin de retrouver leurs repères après le trajet depuis Perpignan.</div>
-          </div>
-        </div>
-        <div class="tip-box">
-          <div class="tip-icon">💡</div>
-          <div class="tip-text">Prépare les affaires de nuit des enfants accessibles facilement pour ne pas tout fouiller à l'arrivée.</div>
+      <div class="act">
+        <div class="act-dot" style="background:#C4622D"></div>
+        <div class="act-time">Soir</div>
+        <div>
+          <div class="act-name">Arrivée directement chez les parents</div>
+          <div class="act-desc">Installation, retrouvailles, on est à la maison dès l'arrivée. Pas besoin de faire deux arrêts !</div>
         </div>
       </div>
+      <div class="dinner-note"><strong>Dîner chez maman</strong> — Phô en famille. La meilleure façon de commencer le séjour !</div>
     </div>
   </div>
 
   <!-- Mardi 21 -->
-  <div class="day-card" onclick="toggle(this)">
-    <div class="day-header">
-      <div class="day-accent" style="background:#7A9E7E"></div>
-      <div class="day-meta">
-        <div class="day-label">Mardi 21 Avril</div>
-        <div class="day-title">Val d'Europe</div>
-        <div class="day-subtitle">Journée douce en famille</div>
+  <div class="day-card" onclick="tog(this)">
+    <div class="day-row">
+      <div class="day-stripe" style="background:#7A9E7E"></div>
+      <div class="day-info">
+        <div class="day-date">Mardi 21 Avril</div>
+        <div class="day-name">Val d'Europe</div>
+        <div class="day-sub">Journée douce en famille</div>
       </div>
-      <div class="day-emoji">🛍️</div>
-      <div class="expand-icon">⌄</div>
+      <div class="day-right"><span class="day-icon">🛍️</span><span class="day-chevron">⌄</span></div>
     </div>
     <div class="day-body">
-      <div class="day-body-inner">
-        <div class="activity">
-          <div class="activity-dot" style="background:#7A9E7E;margin-top:6px"></div>
-          <div class="activity-time">10h00</div>
-          <div class="activity-content">
-            <div class="activity-name">Centre Commercial Val d'Europe</div>
-            <div class="activity-desc">À 10 min de Torcy. Allées larges en poussette, climatisé, toutes les enseignes. Parfait pour décompresser sans se fatiguer.</div>
-          </div>
+      <div class="act">
+        <div class="act-dot" style="background:#7A9E7E"></div>
+        <div class="act-time">10h00</div>
+        <div>
+          <div class="act-name">Centre Commercial Val d'Europe</div>
+          <div class="act-desc">À 10 min. Allées larges en poussette, climatisé, toutes les enseignes. Parfait pour décompresser sans se fatiguer.</div>
         </div>
-        <div class="activity">
-          <div class="activity-dot" style="background:#7A9E7E;margin-top:6px"></div>
-          <div class="activity-time">11h00</div>
-          <div class="activity-content">
-            <div class="activity-name">🐠 Sea Life Aquarium</div>
-            <div class="activity-desc">Dans le centre commercial — idéal pour le grand de 2,5 ans, ambiance calme et colorée. Le bébé sera hypnotisé par les poissons 😄</div>
-          </div>
+      </div>
+      <div class="act">
+        <div class="act-dot" style="background:#7A9E7E"></div>
+        <div class="act-time">11h00</div>
+        <div>
+          <div class="act-name">Sea Life Aquarium</div>
+          <div class="act-desc">Dans le centre — idéal pour la petite de 2,5 ans. Ambiance calme et colorée, elle va adorer !</div>
         </div>
-        <div class="activity">
-          <div class="activity-dot" style="background:#7A9E7E;margin-top:6px"></div>
-          <div class="activity-time">12h30</div>
-          <div class="activity-content">
-            <div class="activity-name">Déjeuner sur place</div>
-            <div class="activity-desc">Large choix de restaurants dans le centre. Retour tranquille l'après-midi.</div>
-          </div>
+      </div>
+      <div class="act">
+        <div class="act-dot" style="background:#7A9E7E"></div>
+        <div class="act-time">12h30</div>
+        <div>
+          <div class="act-name">Déjeuner sur place</div>
+          <div class="act-desc">Large choix de restaurants dans le centre. Retour tranquille l'après-midi.</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Mercredi 22 — DISNEY ⭐ -->
-  <div class="day-card highlight" onclick="toggle(this)">
-    <div class="day-header">
-      <div class="day-accent" style="background:linear-gradient(180deg,#D4A853,#C4622D)"></div>
-      <div class="day-meta">
-        <div class="day-label">Mercredi 22 Avril</div>
-        <div class="day-title">Disneyland Paris</div>
-        <div class="day-subtitle">La grande journée ✨</div>
+  <!-- Mercredi 22 — DISNEY -->
+  <div class="day-card highlight" onclick="tog(this)">
+    <div class="day-row">
+      <div class="day-stripe" style="background:linear-gradient(180deg,#D4A853,#C4622D)"></div>
+      <div class="day-info">
+        <div class="day-date">Mercredi 22 Avril</div>
+        <div class="day-name">Disneyland Paris</div>
+        <div class="day-sub">Studios · Femme, petite & sœurs · Dîner cousin</div>
       </div>
-      <div class="day-emoji">🎢</div>
-      <div class="expand-icon">⌄</div>
+      <div class="day-right"><span class="day-icon">🎢</span><span class="day-chevron">⌄</span></div>
     </div>
     <div class="day-body">
-      <div class="day-body-inner">
-        <div class="special-badge">⭐ Journée Phare</div>
-        <div class="activity">
-          <div class="activity-dot" style="background:#D4A853;margin-top:6px"></div>
-          <div class="activity-time">9h30</div>
-          <div class="activity-content">
-            <div class="activity-name">Arrivée dès l'ouverture</div>
-            <div class="activity-desc">Moins de monde au démarrage. En RER A direct depuis Torcy ou en voiture + parking.</div>
-          </div>
-        </div>
-        <div class="activity">
-          <div class="activity-dot" style="background:#D4A853;margin-top:6px"></div>
-          <div class="activity-time">Matin</div>
-          <div class="activity-content">
-            <div class="activity-name">🏰 Fantasyland en priorité</div>
-            <div class="activity-desc">C'est le paradis pour 2,5 ans : Dumbo l'Éléphant, le Carrousel de Lancelot, le Pays des Contes de Fées, le Château de la Belle au Bois Dormant. Magie garantie !</div>
-          </div>
-        </div>
-        <div class="activity">
-          <div class="activity-dot" style="background:#D4A853;margin-top:6px"></div>
-          <div class="activity-time">Après-midi</div>
-          <div class="activity-content">
-            <div class="activity-name">Parade & Spectacles</div>
-            <div class="activity-desc">Les défilés sur Main Street passionnent les petits sans effort. Le bébé dormira en porte-bébé ou poussette.</div>
-          </div>
-        </div>
-        <div class="activity">
-          <div class="activity-dot" style="background:#D4A853;margin-top:6px"></div>
-          <div class="activity-time">Retour</div>
-          <div class="activity-content">
-            <div class="activity-name">Rentre quand les enfants sont fatigués</div>
-            <div class="activity-desc">Pas besoin de rester jusqu'aux feux d'artifice avec un bébé de 3 mois. L'essentiel c'est que le grand soit émerveillé !</div>
-          </div>
-        </div>
-        <div class="tip-box">
-          <div class="tip-icon">⚠️</div>
-          <div class="tip-text"><strong>Billets en ligne obligatoires</strong> — Avril = vacances scolaires, ça affiche souvent complet. Réserve dès maintenant sur disneylandparis.com. Entrée bébé de moins de 3 ans : <strong>gratuite</strong> !</div>
+      <div class="special-tag">⭐ Journée phare</div>
+      <div class="act">
+        <div class="act-dot" style="background:#D4A853"></div>
+        <div class="act-time">9h30</div>
+        <div>
+          <div class="act-name">Walt Disney Studios — dès l'ouverture</div>
+          <div class="act-desc">Toute la troupe : toi, ta femme, la petite de 2,5 ans et tes sœurs. Le bébé reste à la maison. RER A direct ou voiture + parking.</div>
         </div>
       </div>
+      <div class="act">
+        <div class="act-dot" style="background:#D4A853"></div>
+        <div class="act-time">Matin</div>
+        <div>
+          <div class="act-name">Worlds of Pixar & Cars</div>
+          <div class="act-desc">Toy Story Playland, Cars Quatre Roues Rallye, attractions douces et décors colorés — parfait pour 2,5 ans. Les sœurs pourront accompagner la petite partout.</div>
+        </div>
+      </div>
+      <div class="act">
+        <div class="act-dot" style="background:#D4A853"></div>
+        <div class="act-time">Après-midi</div>
+        <div>
+          <div class="act-name">Spectacles & rencontres de personnages</div>
+          <div class="act-desc">Le point fort des Studios. La petite va être dans un état second face à ses personnages préférés !</div>
+        </div>
+      </div>
+      <div class="act">
+        <div class="act-dot" style="background:#3a7d44"></div>
+        <div class="act-time g">Soir</div>
+        <div>
+          <div class="act-name">Retour & dîner avec le cousin</div>
+          <div class="act-desc">On rentre à temps pour déposer la petite et rejoindre le dîner famille.</div>
+        </div>
+      </div>
+      <div class="dinner-note"><strong>Dîner avec le cousin</strong> le soir.</div>
+      <div class="tip"><strong>Billets en ligne obligatoires</strong> — Avril = vacances scolaires, souvent complet. Réserve sur disneylandparis.com. Entrée moins de 3 ans : <strong>gratuite !</strong></div>
     </div>
   </div>
 
   <!-- Jeudi 23 -->
-  <div class="day-card" onclick="toggle(this)">
-    <div class="day-header">
-      <div class="day-accent" style="background:#B0C4B1"></div>
-      <div class="day-meta">
-        <div class="day-label">Jeudi 23 Avril</div>
-        <div class="day-title">Récup Totale</div>
-        <div class="day-subtitle">Famille & grasse mat'</div>
+  <div class="day-card" onclick="tog(this)">
+    <div class="day-row">
+      <div class="day-stripe" style="background:#B0C4B1"></div>
+      <div class="day-info">
+        <div class="day-date">Jeudi 23 Avril</div>
+        <div class="day-name">Journée famille</div>
+        <div class="day-sub">Déj Luc & Margaux · Dîner parents</div>
       </div>
-      <div class="day-emoji">😴</div>
-      <div class="expand-icon">⌄</div>
+      <div class="day-right"><span class="day-icon">🍽️</span><span class="day-chevron">⌄</span></div>
     </div>
     <div class="day-body">
-      <div class="day-body-inner">
-        <div class="activity">
-          <div class="activity-dot" style="background:#B0C4B1;margin-top:6px"></div>
-          <div class="activity-time">Matin</div>
-          <div class="activity-content">
-            <div class="activity-name">Grasse matinée bien méritée</div>
-            <div class="activity-desc">Disney épuise autant les parents que les enfants. On laisse tout le monde dormir.</div>
-          </div>
+      <div class="act">
+        <div class="act-dot" style="background:#B0C4B1"></div>
+        <div class="act-time">Matin</div>
+        <div>
+          <div class="act-name">Grasse matinée après Disney</div>
+          <div class="act-desc">Récup bien méritée pour tout le monde, surtout la petite qui a beaucoup marché la veille !</div>
         </div>
-        <div class="activity">
-          <div class="activity-dot" style="background:#B0C4B1;margin-top:6px"></div>
-          <div class="activity-time">Après-midi</div>
-          <div class="activity-content">
-            <div class="activity-name">🌳 Parc du Bicentenaire — Torcy</div>
-            <div class="activity-desc">Balade tranquille, le grand peut courir et se défouler, le bébé profite de l'air frais. Pique-nique si le temps est avec nous.</div>
-          </div>
+      </div>
+      <div class="act">
+        <div class="act-dot" style="background:#3a7d44"></div>
+        <div class="act-time g">Midi</div>
+        <div>
+          <div class="act-name">Déjeuner chez Luc & Margaux</div>
+          <div class="act-desc">Repas en famille, ambiance détendue.</div>
         </div>
-        <div class="activity">
-          <div class="activity-dot" style="background:#B0C4B1;margin-top:6px"></div>
-          <div class="activity-time">Soir</div>
-          <div class="activity-content">
-            <div class="activity-name">Repas en famille</div>
-            <div class="activity-desc">Soirée sans contrainte, profite de la famille.</div>
-          </div>
+      </div>
+      <div class="act">
+        <div class="act-dot" style="background:#B0C4B1"></div>
+        <div class="act-time">Après-midi</div>
+        <div>
+          <div class="act-name">Temps libre</div>
+          <div class="act-desc">Balade, sieste des enfants, profite avant le dîner du soir.</div>
+        </div>
+      </div>
+      <div class="act">
+        <div class="act-dot" style="background:#3a7d44"></div>
+        <div class="act-time g">Soir</div>
+        <div>
+          <div class="act-name">Dîner organisé par les parents</div>
+          <div class="act-desc">Belle soirée en famille avant leur départ aux States. Un moment à ne pas rater !</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Vendredi 24 — Paris ⭐ -->
-  <div class="day-card highlight" onclick="toggle(this)">
-    <div class="day-header">
-      <div class="day-accent" style="background:linear-gradient(180deg,#3D2B1F,#C4622D)"></div>
-      <div class="day-meta">
-        <div class="day-label">Vendredi 24 Avril</div>
-        <div class="day-title">Paris Light</div>
-        <div class="day-subtitle">Matin seulement · Dîner ami le soir</div>
+  <!-- Vendredi 24 — Paris -->
+  <div class="day-card highlight" onclick="tog(this)">
+    <div class="day-row">
+      <div class="day-stripe" style="background:linear-gradient(180deg,#3D2B1F,#C4622D)"></div>
+      <div class="day-info">
+        <div class="day-date">Vendredi 24 Avril</div>
+        <div class="day-name">Paris</div>
+        <div class="day-sub">Trocadéro & Tour Eiffel · Dîner chez Micka</div>
       </div>
-      <div class="day-emoji">🗼</div>
-      <div class="expand-icon">⌄</div>
+      <div class="day-right"><span class="day-icon">🗼</span><span class="day-chevron">⌄</span></div>
     </div>
     <div class="day-body">
-      <div class="day-body-inner">
-        <div class="special-badge">🗼 Journée Paris</div>
-        <div class="activity">
-          <div class="activity-dot" style="background:#3D2B1F;margin-top:6px"></div>
-          <div class="activity-time">9h00</div>
-          <div class="activity-content">
-            <div class="activity-name">⛪ Notre-Dame de Paris</div>
-            <div class="activity-desc">Totalement restaurée depuis décembre 2024 — un moment historique ! Visite extérieure + intérieur si les enfants le permettent. Gratuit, émouvant.</div>
-          </div>
-        </div>
-        <div class="activity">
-          <div class="activity-dot" style="background:#3D2B1F;margin-top:6px"></div>
-          <div class="activity-time">10h00</div>
-          <div class="activity-content">
-            <div class="activity-name">🍦 Île Saint-Louis</div>
-            <div class="activity-desc">Balade ultra-calme sur l'île, rues piétonnes parfaites en poussette. Glace Berthillon pour le grand — une institution parisienne !</div>
-          </div>
-        </div>
-        <div class="activity">
-          <div class="activity-dot" style="background:#3D2B1F;margin-top:6px"></div>
-          <div class="activity-time">11h30</div>
-          <div class="activity-content">
-            <div class="activity-name">🌿 Jardins du Trocadéro</div>
-            <div class="activity-desc">Vue imprenable sur la Tour Eiffel sans faire la queue ni payer ! Grands espaces pour que le petit court. Photo souvenir de famille parfaite. Sandwich ou pique-nique sur place.</div>
-          </div>
-        </div>
-        <div class="activity">
-          <div class="activity-dot" style="background:#C4622D;margin-top:6px"></div>
-          <div class="activity-time">13h00</div>
-          <div class="activity-content">
-            <div class="activity-name">Retour à Torcy</div>
-            <div class="activity-desc">Les enfants font leur sieste chez la famille. Toi tu te prépares tranquillement pour ton dîner chez ton ami le soir 🍽️</div>
-          </div>
-        </div>
-        <div class="tip-box">
-          <div class="tip-icon">💡</div>
-          <div class="tip-text">Le Louvre et Montmartre ont été volontairement exclus — trop épuisant avec un bébé et inadapté en poussette pour Montmartre.</div>
+      <div class="special-tag">🗼 Journée Paris</div>
+      <div class="act">
+        <div class="act-dot" style="background:#3D2B1F"></div>
+        <div class="act-time">Matin</div>
+        <div>
+          <div class="act-name">Jardins du Trocadéro</div>
+          <div class="act-desc">Grande pelouse face à la Tour Eiffel, parfait en poussette. La petite peut courir, photos souvenir de famille au top. Sandwich ou pique-nique sur place.</div>
         </div>
       </div>
+      <div class="act">
+        <div class="act-dot" style="background:#C4622D"></div>
+        <div class="act-time">Après-midi</div>
+        <div>
+          <div class="act-name">Tour Eiffel</div>
+          <div class="act-desc">Montée au sommet si réservation faite, sinon la vue depuis le Champ-de-Mars est déjà magnifique. Réservation en ligne recommandée.</div>
+        </div>
+      </div>
+      <div class="act">
+        <div class="act-dot" style="background:#3a7d44"></div>
+        <div class="act-time g">Soir</div>
+        <div>
+          <div class="act-name">Retour & dîner chez Micka</div>
+          <div class="act-desc">Retour pour déposer les enfants, puis direction chez Micka pour la soirée.</div>
+        </div>
+      </div>
+      <div class="dinner-note"><strong>Dîner chez Micka</strong> le soir.</div>
     </div>
   </div>
 
-</div>
-
-<!-- FREE DAYS -->
-<div class="free-card">
-  <h3>🌿 Samedi 25 & Dimanche 26</h3>
-  <p>Deux jours libres — aucun programme imposé. Profitez de la famille, faites une activité douce ensemble si l'envie est là (lac de Torcy, Vaires-sur-Marne…), ou simplement soufflez. Dernière soirée tous ensemble dimanche.</p>
-</div>
-
-<!-- CHECKLIST -->
-<p class="section-title">À ne pas oublier</p>
-<div class="checklist">
-  <div class="checklist-card">
-    <h3>✅ Checklist</h3>
-    <div class="check-item">Billets Disney réservés en ligne à l'avance (disneylandparis.com) — entrée bébé gratuite</div>
-    <div class="check-item">Porte-bébé ergonomique pour le 3 mois à Disney & Paris</div>
-    <div class="check-item">Poussette légère et maniable pour les transports</div>
-    <div class="check-item">RER A : station Torcy → Paris & Disney, direct</div>
-    <div class="check-item">Crème solaire & chapeau — avril peut surprendre</div>
-    <div class="check-item">Sac à langer bien approvisionné pour les longues journées</div>
-    <div class="check-item">Snacks & gourdes pour éviter les achats sur place à Disney</div>
+  <!-- Samedi & Dimanche -->
+  <div class="free-block">
+    <h3>Samedi 25 & Dimanche 26</h3>
+    <p>Deux jours libres, aucun programme imposé. Profitez de la famille, activité douce selon l'envie. Un repas prévu samedi soir — le reste est libre !</p>
   </div>
-</div>
 
-<!-- DEPARTURE -->
-<div class="departure">
-  <div class="departure-emoji">🚗</div>
-  <h3>Lundi 27 — Retour</h3>
-  <p>Bagages prêts la veille.<br>Bon retour vers Perpignan !</p>
-</div>
+  <!-- Checklist -->
+  <div class="checklist-block">
+    <h3>À ne pas oublier</h3>
+    <div class="chk"><span class="chk-arrow">→</span><span>Billets Disney Studios réservés en ligne — entrée moins de 3 ans gratuite</span></div>
+    <div class="chk"><span class="chk-arrow">→</span><span>Organisation pour le bébé la journée Disney — il reste à la maison</span></div>
+    <div class="chk"><span class="chk-arrow">→</span><span>Poussette légère pour Paris (Trocadéro & Tour Eiffel)</span></div>
+    <div class="chk"><span class="chk-arrow">→</span><span>Réservation Tour Eiffel en ligne si montée prévue</span></div>
+    <div class="chk"><span class="chk-arrow">→</span><span>RER A : direct vers Paris & Disney</span></div>
+    <div class="chk"><span class="chk-arrow">→</span><span>Crème solaire & chapeau — avril peut surprendre</span></div>
+    <div class="chk"><span class="chk-arrow">→</span><span>Snacks & gourdes pour Disney</span></div>
+  </div>
 
+  <!-- Départ -->
+  <div class="depart-block">
+    <div class="d-icon">🚗</div>
+    <h3>Lundi 27 — Retour</h3>
+    <p>Bagages prêts la veille.<br>Bon retour vers Perpignan !</p>
+  </div>
+
+</div>
 <script>
-  function toggle(card) {
+  function tog(card) {
     const body = card.querySelector('.day-body');
     const isOpen = body.classList.contains('open');
-    // Close all
     document.querySelectorAll('.day-body').forEach(b => b.classList.remove('open'));
     document.querySelectorAll('.day-card').forEach(c => c.classList.remove('open'));
-    // Open clicked if it was closed
     if (!isOpen) {
       body.classList.add('open');
       card.classList.add('open');
-      setTimeout(() => card.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
     }
   }
 </script>
-
 </body>
 </html>
