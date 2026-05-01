@@ -3,465 +3,1241 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Notre Séjour — Avril 2026</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<title>L'Art du Prompt — E-Book Premium</title>
 <style>
-  :root { --cream:#FDF6EE; --warm:#F5EAD8; --brown:#3D2B1F; --terracotta:#C4622D; --sage:#7A9E7E; --gold:#D4A853; --green:#3a7d44; }
-  * { margin:0; padding:0; box-sizing:border-box; }
-  body { background-color:var(--cream); color:var(--brown); font-family:'DM Sans',sans-serif; font-weight:300; min-height:100vh; overflow-x:hidden; }
-  .trip-wrap { max-width:480px; margin:0 auto; padding:0 16px 40px; }
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
 
-  .trip-hero { background:linear-gradient(150deg,#3D2B1F 0%,#7B3F1E 55%,#C4622D 100%); border-radius:20px; padding:44px 24px 32px; text-align:center; margin:16px 0 -16px; position:relative; overflow:hidden; }
-  .trip-hero::before { content:''; position:absolute; inset:0; background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E"); }
-  .hero-badge { display:inline-block; border:1px solid rgba(255,255,255,0.3); color:rgba(255,255,255,0.85); font-size:11px; letter-spacing:2.5px; text-transform:uppercase; padding:4px 14px; border-radius:100px; margin-bottom:16px; position:relative; }
-  .trip-hero h1 { font-family:'Playfair Display',serif; font-size:clamp(32px,8vw,42px); font-weight:400; color:#fff; line-height:1.15; margin:0 0 8px; position:relative; }
-  .trip-hero h1 em { font-style:italic; color:var(--gold); }
-  .hero-sub { font-size:13px; color:rgba(255,255,255,0.6); margin:0 0 20px; position:relative; }
-  .hero-pills { display:flex; gap:6px; justify-content:center; flex-wrap:wrap; position:relative; }
-  .hero-pill { background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.18); color:rgba(255,255,255,0.85); font-size:11px; padding:4px 10px; border-radius:100px; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  .train-banner { background:#fff; border-radius:20px; padding:18px 20px; margin:0 0 12px; position:relative; z-index:2; box-shadow:0 8px 32px rgba(61,43,31,0.1); }
-  .train-banner-title { font-size:10px; font-weight:500; letter-spacing:2.5px; text-transform:uppercase; color:#aaa; margin-bottom:12px; }
-  .train-row { display:flex; align-items:center; gap:10px; }
-  .train-row+.train-row { margin-top:10px; padding-top:10px; border-top:1px solid var(--warm); }
-  .train-dir { font-size:10px; font-weight:500; letter-spacing:1px; text-transform:uppercase; color:#aaa; min-width:38px; }
-  .train-times { display:flex; align-items:center; gap:6px; flex:1; }
-  .train-time { font-family:'Playfair Display',serif; font-size:17px; color:var(--brown); font-weight:400; }
-  .train-arrow { color:#E91E8C; font-size:13px; flex:1; text-align:center; }
-  .train-duration { font-size:11px; color:#aaa; background:var(--warm); padding:3px 8px; border-radius:100px; white-space:nowrap; }
-  .train-sub { font-size:11px; color:#aaa; padding:4px 0 0 48px; }
-  .train-warn { margin-top:10px; font-size:12px; color:#6B4226; background:var(--warm); border-radius:10px; padding:8px 12px; }
-  .train-warn strong { color:var(--brown); font-weight:500; }
+  :root {
+    --gold: #C9A96E;
+    --gold-light: #E8D5A8;
+    --noir: #0A0A0F;
+    --noir-mid: #12121A;
+    --noir-card: #1A1A26;
+    --blanc: #F5F0E8;
+    --blanc-soft: #E8E0D0;
+    --accent-red: #C0392B;
+    --accent-green: #27AE60;
+    --text-muted: #7A7A8C;
+    --border: rgba(201, 169, 110, 0.2);
+  }
 
-  .meteo-card { background:linear-gradient(135deg,#2B5BB8 0%,#1a3f8a 100%); border-radius:20px; padding:18px 20px; margin:0 0 12px; position:relative; z-index:2; box-shadow:0 8px 32px rgba(27,63,138,0.25); }
-  .meteo-title { font-size:10px; font-weight:500; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.6); margin-bottom:12px; }
-  .meteo-days { display:flex; gap:6px; }
-  .meteo-day { flex:1; text-align:center; background:rgba(255,255,255,0.1); border-radius:12px; padding:10px 4px; }
-  .meteo-day-name { font-size:10px; color:rgba(255,255,255,0.6); margin-bottom:6px; font-weight:500; }
-  .meteo-icon { font-size:18px; margin-bottom:4px; }
-  .meteo-temp { font-size:14px; font-weight:500; color:#fff; }
-  .meteo-rain { font-size:10px; color:rgba(255,255,255,0.5); margin-top:2px; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--noir);
+    color: var(--blanc);
+    width: 210mm;
+    margin: 0 auto;
+  }
 
-  .nim-banner { background:linear-gradient(135deg,#4A3060 0%,#2E1D45 100%); border-radius:16px; padding:14px 18px; margin-bottom:12px; display:flex; align-items:center; gap:12px; }
-  .nim-avatar { width:38px; height:38px; border-radius:50%; background:rgba(255,255,255,0.15); display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0; }
-  .nim-text .nim-name { font-size:13px; font-weight:500; color:#fff; margin-bottom:2px; }
-  .nim-text .nim-sub { font-size:11px; color:rgba(255,255,255,0.6); line-height:1.4; }
+  /* ===== PAGE BASE ===== */
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+  }
 
-  .intro-card { background:#fff; border-radius:20px; padding:20px; margin:0 0 24px; position:relative; z-index:2; box-shadow:0 8px 32px rgba(61,43,31,0.1); }
-  .intro-card p { font-size:14px; line-height:1.7; color:#6B4226; }
-  .intro-card strong { color:var(--terracotta); font-weight:500; }
+  /* ===== PAGE 1 : COUVERTURE ===== */
+  .cover {
+    background: var(--noir);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    min-height: 297mm;
+  }
 
-  .section-label { font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--terracotta); padding:8px 0 12px; font-weight:500; }
+  .cover-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 40%, rgba(201,169,110,0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 30% at 20% 80%, rgba(201,169,110,0.04) 0%, transparent 60%);
+  }
 
-  .day-card { background:#fff; border-radius:20px; overflow:hidden; margin-bottom:10px; box-shadow:0 2px 16px rgba(61,43,31,0.07); cursor:pointer; -webkit-tap-highlight-color:transparent; }
-  .day-row { display:flex; align-items:center; min-height:76px; }
-  .day-stripe { width:5px; align-self:stretch; flex-shrink:0; }
-  .day-info { flex:1; padding:14px 12px 14px 16px; }
-  .day-date { font-size:10px; font-weight:500; letter-spacing:2px; text-transform:uppercase; color:#aaa; margin-bottom:3px; }
-  .day-name { font-family:'Playfair Display',serif; font-size:19px; font-weight:400; color:var(--brown); line-height:1.2; }
-  .day-sub { font-size:11px; color:#aaa; margin-top:3px; }
-  .day-weather { display:flex; align-items:center; gap:4px; margin-top:4px; }
-  .day-weather-icon { font-size:13px; }
-  .day-weather-temp { font-size:11px; font-weight:500; color:#2B5BB8; }
-  .day-right { display:flex; align-items:center; gap:6px; padding-right:16px; flex-shrink:0; }
-  .day-icon { font-size:26px; }
-  .day-chevron { font-size:18px; color:#ccc; transition:transform 0.25s ease; display:inline-block; line-height:1; }
-  .day-card.open .day-chevron { transform:rotate(180deg); }
+  .cover-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(201,169,110,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,169,110,0.05) 1px, transparent 1px);
+    background-size: 20mm 20mm;
+  }
 
-  .day-body { display:none; border-top:1px solid var(--warm); padding:18px 20px 20px 24px; }
-  .day-body.open { display:block; }
-  .day-card.highlight .day-row { background:linear-gradient(135deg,#FDF0E8 0%,#fff 100%); }
+  .cover-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 20mm;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8mm;
+  }
 
-  .special-tag { display:inline-block; background:#FDF0E8; color:#9B4516; font-size:10px; font-weight:500; letter-spacing:1.5px; text-transform:uppercase; padding:4px 10px; border-radius:100px; margin-bottom:14px; }
+  .cover-badge {
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-family: 'DM Mono', monospace;
+    font-size: 8pt;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    padding: 3mm 8mm;
+    display: inline-block;
+  }
 
-  .act { display:flex; gap:10px; margin-bottom:14px; align-items:flex-start; }
-  .act:last-of-type { margin-bottom:0; }
-  .act-dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; margin-top:6px; }
-  .act-time { font-size:11px; font-weight:500; color:var(--terracotta); min-width:42px; padding-top:1px; flex-shrink:0; }
-  .act-time.g { color:var(--green); }
-  .act-name { font-size:13px; font-weight:500; color:var(--brown); margin-bottom:3px; }
-  .act-desc { font-size:12px; color:#888; line-height:1.55; }
+  .cover-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 7.5pt;
+    letter-spacing: 0.4em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
 
-  .tip { background:var(--warm); border-left:3px solid var(--terracotta); border-radius:0 10px 10px 0; padding:10px 14px; margin-top:14px; font-size:12px; color:#6B4226; line-height:1.55; }
-  .tip strong { color:var(--brown); font-weight:500; }
-  .dinner-note { background:#EDF5EE; border-left:3px solid var(--green); border-radius:0 10px 10px 0; padding:10px 14px; margin-top:10px; font-size:12px; color:#2E5E35; line-height:1.55; }
-  .dinner-note strong { color:var(--green); font-weight:500; }
-  .nim-note { background:#EEE8F5; border-left:3px solid #4A3060; border-radius:0 10px 10px 0; padding:10px 14px; margin-top:10px; font-size:12px; color:#4A3060; line-height:1.55; }
-  .nim-note strong { color:#4A3060; font-weight:500; }
+  .cover-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 52pt;
+    font-weight: 900;
+    line-height: 1.0;
+    color: var(--blanc);
+    letter-spacing: -0.02em;
+  }
 
-  .free-block { background:linear-gradient(135deg,#7A9E7E 0%,#4d7a52 100%); border-radius:20px; padding:24px 20px; margin-bottom:10px; }
-  .free-block h3 { font-family:'Playfair Display',serif; font-size:21px; font-weight:400; color:#fff; margin:0 0 8px; }
-  .free-block p { font-size:13px; color:rgba(255,255,255,0.85); line-height:1.6; margin:0; }
-  .free-block strong { color:#fff; font-weight:500; }
+  .cover-title span {
+    color: var(--gold);
+    font-style: italic;
+  }
 
-  .checklist-block { background:var(--brown); border-radius:20px; padding:24px 20px; margin-bottom:10px; }
-  .checklist-block h3 { font-family:'Playfair Display',serif; font-size:19px; font-weight:400; color:var(--gold); margin:0 0 16px; }
-  .chk { display:flex; gap:8px; font-size:12px; color:rgba(255,255,255,0.82); line-height:1.55; margin-bottom:10px; align-items:flex-start; }
-  .chk-arrow { color:var(--gold); flex-shrink:0; font-weight:500; margin-top:1px; }
+  .cover-subtitle {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12pt;
+    font-weight: 300;
+    color: var(--blanc-soft);
+    max-width: 130mm;
+    line-height: 1.6;
+    opacity: 0.85;
+  }
 
-  .depart-block { background:var(--warm); border-radius:20px; padding:24px 20px; text-align:center; }
-  .depart-block .d-icon { font-size:32px; margin-bottom:8px; }
-  .depart-block h3 { font-family:'Playfair Display',serif; font-size:19px; font-weight:400; color:var(--brown); margin:0 0 4px; }
-  .depart-block p { font-size:12px; color:#999; line-height:1.6; }
-  .depart-train { margin-top:12px; background:#fff; border-radius:12px; padding:10px 16px; display:inline-block; }
-  .depart-train-time { font-family:'Playfair Display',serif; font-size:16px; color:var(--brown); }
-  .depart-train-info { font-size:11px; color:#aaa; margin-top:2px; }
+  .cover-divider {
+    width: 40mm;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  /* Brain SVG illustration */
+  .cover-illustration {
+    width: 60mm;
+    height: 60mm;
+    position: relative;
+  }
+
+  .cover-footer {
+    position: absolute;
+    bottom: 12mm;
+    left: 0; right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15mm;
+    z-index: 2;
+  }
+
+  .cover-footer-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 7pt;
+    color: var(--text-muted);
+    letter-spacing: 0.2em;
+  }
+
+  .cover-corner {
+    position: absolute;
+    width: 15mm;
+    height: 15mm;
+    border-color: var(--gold);
+    border-style: solid;
+    opacity: 0.4;
+  }
+  .cover-corner.tl { top: 10mm; left: 10mm; border-width: 1px 0 0 1px; }
+  .cover-corner.tr { top: 10mm; right: 10mm; border-width: 1px 1px 0 0; }
+  .cover-corner.bl { bottom: 10mm; left: 10mm; border-width: 0 0 1px 1px; }
+  .cover-corner.br { bottom: 10mm; right: 10mm; border-width: 0 1px 1px 0; }
+
+  /* ===== PAGE 2 : INTRODUCTION ===== */
+  .intro-page {
+    background: var(--noir-mid);
+    padding: 18mm 16mm;
+    display: flex;
+    flex-direction: column;
+    gap: 8mm;
+  }
+
+  .page-header {
+    display: flex;
+    align-items: center;
+    gap: 5mm;
+    padding-bottom: 5mm;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2mm;
+  }
+
+  .page-number {
+    font-family: 'DM Mono', monospace;
+    font-size: 7pt;
+    color: var(--gold);
+    letter-spacing: 0.3em;
+  }
+
+  .page-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 7pt;
+    color: var(--text-muted);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    flex: 1;
+    text-align: right;
+  }
+
+  .section-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 7pt;
+    color: var(--gold);
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 28pt;
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--blanc);
+  }
+
+  .section-title em {
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  .body-text {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 9.5pt;
+    line-height: 1.75;
+    color: rgba(245,240,232,0.82);
+  }
+
+  .highlight-box {
+    background: linear-gradient(135deg, rgba(201,169,110,0.08), rgba(201,169,110,0.04));
+    border-left: 3px solid var(--gold);
+    padding: 5mm 7mm;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .highlight-box p {
+    font-family: 'Playfair Display', serif;
+    font-size: 11pt;
+    font-style: italic;
+    color: var(--gold-light);
+    line-height: 1.6;
+  }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6mm;
+  }
+
+  .stat-card {
+    background: var(--noir-card);
+    border: 1px solid var(--border);
+    padding: 5mm;
+    border-radius: 4px;
+    text-align: center;
+  }
+
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 30pt;
+    font-weight: 900;
+    color: var(--gold);
+    line-height: 1;
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 7.5pt;
+    color: var(--text-muted);
+    margin-top: 1.5mm;
+    letter-spacing: 0.05em;
+  }
+
+  /* ===== PAGE 3 : C'EST QUOI UN PROMPT ===== */
+  .what-page {
+    background: var(--noir);
+    padding: 18mm 16mm;
+  }
+
+  .prompt-anatomy {
+    background: var(--noir-card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 6mm 7mm;
+    margin: 5mm 0;
+    font-family: 'DM Mono', monospace;
+    font-size: 8.5pt;
+    line-height: 1.9;
+    position: relative;
+  }
+
+  .prompt-anatomy::before {
+    content: "EXEMPLE DE PROMPT";
+    position: absolute;
+    top: -3mm;
+    left: 5mm;
+    background: var(--noir);
+    padding: 0 2mm;
+    font-family: 'DM Mono', monospace;
+    font-size: 6.5pt;
+    color: var(--gold);
+    letter-spacing: 0.3em;
+  }
+
+  .role-tag { color: #56B6C2; }
+  .context-tag { color: #98C379; }
+  .task-tag { color: #E5C07B; }
+  .format-tag { color: #C678DD; }
+
+  .legend {
+    display: flex;
+    gap: 5mm;
+    flex-wrap: wrap;
+    margin-top: 3mm;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 2mm;
+    font-size: 7.5pt;
+    color: var(--text-muted);
+  }
+
+  .legend-dot {
+    width: 3mm;
+    height: 3mm;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .before-after {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4mm;
+    margin: 5mm 0;
+  }
+
+  .bad-box {
+    background: rgba(192,57,43,0.08);
+    border: 1px solid rgba(192,57,43,0.3);
+    border-radius: 4px;
+    padding: 4mm 5mm;
+  }
+
+  .good-box {
+    background: rgba(39,174,96,0.08);
+    border: 1px solid rgba(39,174,96,0.3);
+    border-radius: 4px;
+    padding: 4mm 5mm;
+  }
+
+  .box-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 7pt;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 2.5mm;
+    display: block;
+  }
+
+  .bad-box .box-label { color: var(--accent-red); }
+  .good-box .box-label { color: var(--accent-green); }
+
+  .box-content {
+    font-family: 'DM Mono', monospace;
+    font-size: 8pt;
+    line-height: 1.7;
+    color: rgba(245,240,232,0.8);
+  }
+
+  /* ===== PAGE 4 : LES 5 RÈGLES ===== */
+  .rules-page {
+    background: var(--noir-mid);
+    padding: 15mm 16mm;
+  }
+
+  .rules-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 5mm;
+    margin-top: 6mm;
+  }
+
+  .rule-card {
+    display: flex;
+    gap: 5mm;
+    align-items: flex-start;
+    background: var(--noir-card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 5mm 6mm;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .rule-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--gold);
+  }
+
+  .rule-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 24pt;
+    font-weight: 900;
+    color: rgba(201,169,110,0.2);
+    line-height: 1;
+    min-width: 12mm;
+    flex-shrink: 0;
+  }
+
+  .rule-body {}
+
+  .rule-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 12pt;
+    font-weight: 700;
+    color: var(--blanc);
+    margin-bottom: 1.5mm;
+  }
+
+  .rule-desc {
+    font-size: 8.5pt;
+    line-height: 1.65;
+    color: rgba(245,240,232,0.75);
+  }
+
+  .rule-example {
+    font-family: 'DM Mono', monospace;
+    font-size: 7.5pt;
+    color: var(--gold-light);
+    background: rgba(201,169,110,0.07);
+    padding: 2mm 3mm;
+    border-radius: 3px;
+    margin-top: 2mm;
+    display: inline-block;
+  }
+
+  /* ===== PAGE 5 : FORMULE MAGIQUE ===== */
+  .formula-page {
+    background: var(--noir);
+    padding: 16mm 16mm;
+  }
+
+  .formula-visual {
+    margin: 6mm 0;
+    position: relative;
+  }
+
+  .formula-blocks {
+    display: flex;
+    gap: 0;
+    flex-direction: column;
+    gap: 2mm;
+  }
+
+  .formula-row {
+    display: flex;
+    align-items: stretch;
+    gap: 3mm;
+  }
+
+  .formula-block {
+    flex: 1;
+    background: var(--noir-card);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 4mm 5mm;
+    position: relative;
+  }
+
+  .formula-block-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 6.5pt;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5mm;
+    display: block;
+  }
+
+  .formula-block-content {
+    font-size: 9pt;
+    color: rgba(245,240,232,0.9);
+    line-height: 1.5;
+  }
+
+  .formula-plus {
+    display: flex;
+    align-items: center;
+    color: var(--gold);
+    font-size: 14pt;
+    font-weight: 300;
+    flex-shrink: 0;
+    padding: 0 1mm;
+  }
+
+  .formula-result {
+    background: linear-gradient(135deg, rgba(201,169,110,0.15), rgba(201,169,110,0.05));
+    border: 1px solid var(--gold);
+    border-radius: 5px;
+    padding: 5mm 7mm;
+    margin-top: 4mm;
+    text-align: center;
+  }
+
+  .formula-result-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 7pt;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 2mm;
+  }
+
+  .formula-result-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 13pt;
+    font-style: italic;
+    color: var(--blanc);
+    line-height: 1.4;
+  }
+
+  /* ===== PAGE 6 : CAS PRATIQUES ===== */
+  .cases-page {
+    background: var(--noir-mid);
+    padding: 15mm 16mm;
+  }
+
+  .cases-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4mm;
+    margin-top: 5mm;
+  }
+
+  .case-card {
+    background: var(--noir-card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .case-header {
+    background: rgba(201,169,110,0.1);
+    padding: 3mm 5mm;
+    display: flex;
+    align-items: center;
+    gap: 3mm;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .case-icon {
+    font-size: 12pt;
+  }
+
+  .case-title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 9pt;
+    font-weight: 600;
+    color: var(--gold-light);
+  }
+
+  .case-body {
+    padding: 4mm 5mm;
+  }
+
+  .case-prompt {
+    font-family: 'DM Mono', monospace;
+    font-size: 7.5pt;
+    line-height: 1.75;
+    color: rgba(245,240,232,0.82);
+    background: rgba(0,0,0,0.3);
+    padding: 3mm;
+    border-radius: 3px;
+    border-left: 2px solid var(--gold);
+  }
+
+  .case-result {
+    margin-top: 3mm;
+    font-size: 7.5pt;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  .case-result strong {
+    color: var(--accent-green);
+  }
+
+  /* ===== PAGE 7 : COUVERTURE ARRIÈRE ===== */
+  .back-cover {
+    background: var(--noir);
+    min-height: 297mm;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .back-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 100%, rgba(201,169,110,0.06) 0%, transparent 70%);
+  }
+
+  .back-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 20mm;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8mm;
+    width: 100%;
+  }
+
+  .back-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: 20pt;
+    font-style: italic;
+    color: var(--blanc);
+    line-height: 1.5;
+    max-width: 140mm;
+  }
+
+  .back-quote em {
+    color: var(--gold);
+  }
+
+  .checklist {
+    display: flex;
+    flex-direction: column;
+    gap: 3mm;
+    text-align: left;
+    width: 140mm;
+  }
+
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 4mm;
+    font-size: 9.5pt;
+    color: rgba(245,240,232,0.85);
+    line-height: 1.5;
+  }
+
+  .check-mark {
+    color: var(--gold);
+    font-size: 11pt;
+    margin-top: -0.5mm;
+    flex-shrink: 0;
+  }
+
+  .cta-box {
+    background: var(--gold);
+    color: var(--noir);
+    padding: 5mm 14mm;
+    border-radius: 3px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 11pt;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .back-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 14pt;
+    font-weight: 900;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+  }
+
+  .back-tagline {
+    font-family: 'DM Mono', monospace;
+    font-size: 7.5pt;
+    color: var(--text-muted);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-top: -5mm;
+  }
+
+  /* DIVIDER ORNAMENT */
+  .ornament {
+    display: flex;
+    align-items: center;
+    gap: 4mm;
+    width: 100%;
+  }
+
+  .ornament-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border));
+  }
+
+  .ornament-line.right {
+    background: linear-gradient(90deg, var(--border), transparent);
+  }
+
+  .ornament-diamond {
+    width: 3mm;
+    height: 3mm;
+    background: var(--gold);
+    transform: rotate(45deg);
+    flex-shrink: 0;
+  }
+
+  /* Typography helpers */
+  .text-gold { color: var(--gold); }
+  .text-muted { color: var(--text-muted); }
+  .mono { font-family: 'DM Mono', monospace; }
+  .gap-sm { height: 3mm; }
+  .gap-md { height: 5mm; }
+
+  @media print {
+    body { width: 210mm; }
+    .page { page-break-after: always; }
+  }
 </style>
 </head>
 <body>
-<div class="trip-wrap">
 
-  <div class="trip-hero">
-    <div class="hero-badge">Voyage en famille</div>
-    <h1>Notre <em>Séjour</em><br>Île-de-France</h1>
-    <p class="hero-sub">20 → 27 Avril 2026 · Chez les parents</p>
-    <div class="hero-pills">
-      <span class="hero-pill">Bébé 3 mois</span>
-      <span class="hero-pill">2 ans et demi</span>
-      <span class="hero-pill">Chez les parents</span>
-      <span class="hero-pill">Disney</span>
-      <span class="hero-pill">Paris</span>
+<!-- ═══════════════════════════════════════════ -->
+<!-- PAGE 1 : COUVERTURE -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="page cover">
+  <div class="cover-bg"></div>
+  <div class="cover-grid"></div>
+  <div class="cover-corner tl"></div>
+  <div class="cover-corner tr"></div>
+  <div class="cover-corner bl"></div>
+  <div class="cover-corner br"></div>
+
+  <div class="cover-content">
+    <div class="cover-badge">Guide Complet · Édition 2025</div>
+
+    <!-- Central illustration: abstract brain/neural network -->
+    <svg width="55mm" height="55mm" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#C9A96E" stop-opacity="0.3"/>
+          <stop offset="100%" stop-color="#C9A96E" stop-opacity="0"/>
+        </radialGradient>
+        <filter id="blur">
+          <feGaussianBlur stdDeviation="3"/>
+        </filter>
+      </defs>
+      <!-- Glow background -->
+      <ellipse cx="110" cy="110" rx="90" ry="90" fill="url(#glow)"/>
+      <!-- Neural nodes -->
+      <circle cx="110" cy="60" r="8" fill="none" stroke="#C9A96E" stroke-width="1.5"/>
+      <circle cx="60" cy="100" r="8" fill="none" stroke="#C9A96E" stroke-width="1.5"/>
+      <circle cx="160" cy="100" r="8" fill="none" stroke="#C9A96E" stroke-width="1.5"/>
+      <circle cx="75" cy="155" r="8" fill="none" stroke="#C9A96E" stroke-width="1.5"/>
+      <circle cx="145" cy="155" r="8" fill="none" stroke="#C9A96E" stroke-width="1.5"/>
+      <circle cx="110" cy="130" r="12" fill="rgba(201,169,110,0.15)" stroke="#C9A96E" stroke-width="2"/>
+      <!-- Connections -->
+      <line x1="110" y1="68" x2="68" y2="100" stroke="#C9A96E" stroke-width="1" stroke-opacity="0.5"/>
+      <line x1="110" y1="68" x2="152" y2="100" stroke="#C9A96E" stroke-width="1" stroke-opacity="0.5"/>
+      <line x1="68" y1="100" x2="110" y2="130" stroke="#C9A96E" stroke-width="1" stroke-opacity="0.5"/>
+      <line x1="152" y1="100" x2="110" y2="130" stroke="#C9A96E" stroke-width="1" stroke-opacity="0.5"/>
+      <line x1="110" y1="130" x2="83" y2="155" stroke="#C9A96E" stroke-width="1" stroke-opacity="0.5"/>
+      <line x1="110" y1="130" x2="137" y2="155" stroke="#C9A96E" stroke-width="1" stroke-opacity="0.5"/>
+      <line x1="68" y1="100" x2="83" y2="155" stroke="#C9A96E" stroke-width="1" stroke-opacity="0.3"/>
+      <line x1="152" y1="100" x2="137" y2="155" stroke="#C9A96E" stroke-width="1" stroke-opacity="0.3"/>
+      <!-- Central dots filled -->
+      <circle cx="110" cy="60" r="3" fill="#C9A96E"/>
+      <circle cx="60" cy="100" r="3" fill="#C9A96E"/>
+      <circle cx="160" cy="100" r="3" fill="#C9A96E"/>
+      <circle cx="75" cy="155" r="3" fill="#C9A96E"/>
+      <circle cx="145" cy="155" r="3" fill="#C9A96E"/>
+      <circle cx="110" cy="130" r="4" fill="#C9A96E"/>
+      <!-- Outer ring -->
+      <circle cx="110" cy="110" r="100" fill="none" stroke="rgba(201,169,110,0.1)" stroke-width="1"/>
+      <circle cx="110" cy="110" r="85" fill="none" stroke="rgba(201,169,110,0.07)" stroke-width="1" stroke-dasharray="4 8"/>
+      <!-- Cursor icon at center -->
+      <text x="103" y="135" font-family="monospace" font-size="14" fill="#C9A96E" opacity="0.6">|</text>
+    </svg>
+
+    <div class="ornament">
+      <div class="ornament-line"></div>
+      <div class="ornament-diamond"></div>
+      <div class="ornament-line right"></div>
     </div>
+
+    <div class="cover-title">L'<span>Art</span><br>du Prompt</div>
+
+    <div class="cover-subtitle">
+      Parlez à l'IA comme un expert — même si vous débutez.
+      Obtenez des résultats 10× meilleurs en 5 minutes.
+    </div>
+
+    <div class="cover-divider"></div>
+
+    <div class="cover-eyebrow">Maîtrisez ChatGPT · Claude · Gemini</div>
   </div>
 
-  <div class="train-banner">
-    <div class="train-banner-title">🚄 Trajets Ouigo</div>
-    <div class="train-row">
-      <div class="train-dir">Aller</div>
-      <div class="train-times">
-        <div class="train-time">16:02</div>
-        <div class="train-arrow">————→</div>
-        <div class="train-time">21:22</div>
-      </div>
-      <div class="train-duration">5h20</div>
-    </div>
-    <div class="train-sub">Perpignan → Paris Gare de Lyon · Train n°7882</div>
-    <div class="train-row">
-      <div class="train-dir">Retour</div>
-      <div class="train-times">
-        <div class="train-time">09:39</div>
-        <div class="train-arrow">————→</div>
-        <div class="train-time">15:02</div>
-      </div>
-      <div class="train-duration">5h23</div>
-    </div>
-    <div class="train-sub">Paris Gare de Lyon → Perpignan · Train n°7885</div>
-    <div class="train-warn">⚠️ Embarquement retour ouvert 40min avant — sois à la gare à <strong>09h00</strong> lundi matin.</div>
+  <div class="cover-footer">
+    <span class="cover-footer-text">PROMPTMASTER © 2025</span>
+    <span class="cover-footer-text">promptmaster.fr</span>
   </div>
-
-  <div class="meteo-card">
-    <div class="meteo-title">🌤 Météo Torcy — semaine du séjour</div>
-    <div class="meteo-days">
-      <div class="meteo-day">
-        <div class="meteo-day-name">Lun</div>
-        <div class="meteo-icon">⛅</div>
-        <div class="meteo-temp">15°</div>
-        <div class="meteo-rain">10%</div>
-      </div>
-      <div class="meteo-day">
-        <div class="meteo-day-name">Mar</div>
-        <div class="meteo-icon">⛅</div>
-        <div class="meteo-temp">15°</div>
-        <div class="meteo-rain">10%</div>
-      </div>
-      <div class="meteo-day">
-        <div class="meteo-day-name">Mer</div>
-        <div class="meteo-icon">☀️</div>
-        <div class="meteo-temp">17°</div>
-        <div class="meteo-rain">0%</div>
-      </div>
-      <div class="meteo-day">
-        <div class="meteo-day-name">Jeu</div>
-        <div class="meteo-icon">☀️</div>
-        <div class="meteo-temp">20°</div>
-        <div class="meteo-rain">0%</div>
-      </div>
-      <div class="meteo-day">
-        <div class="meteo-day-name">Ven</div>
-        <div class="meteo-icon">☀️</div>
-        <div class="meteo-temp">18°</div>
-        <div class="meteo-rain">0%</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="nim-banner">
-    <div class="nim-avatar">👤</div>
-    <div class="nim-text">
-      <div class="nim-name">Nim se greffe quand il peut !</div>
-      <div class="nim-sub">Dispo les soirs et le weekend — il rejoint le groupe selon le planning.</div>
-    </div>
-  </div>
-
-  <div class="intro-card">
-    <p>Un séjour pensé <strong>pour toute la famille</strong> — rythme adapté aux petits, journées équilibrées entre découverte et repos. Logement <strong>chez les parents</strong>, avec deux grandes escapades : Disney Studios et Paris.</p>
-  </div>
-
-  <p class="section-label">Le programme jour par jour</p>
-
-  <!-- Lundi 20 -->
-  <div class="day-card" onclick="tog(this)">
-    <div class="day-row">
-      <div class="day-stripe" style="background:#C4622D"></div>
-      <div class="day-info">
-        <div class="day-date">Lundi 20 Avril</div>
-        <div class="day-name">Arrivée</div>
-        <div class="day-sub">Sœur à la gare · Phô chez maman</div>
-        <div class="day-weather"><span class="day-weather-icon">⛅</span><span class="day-weather-temp">15°C</span></div>
-      </div>
-      <div class="day-right"><span class="day-icon">🚄</span><span class="day-chevron">⌄</span></div>
-    </div>
-    <div class="day-body">
-      <div class="act">
-        <div class="act-dot" style="background:#C4622D"></div>
-        <div class="act-time">15h30</div>
-        <div>
-          <div class="act-name">À quai à Perpignan</div>
-          <div class="act-desc">Embarquement ouvert 30min avant — train n°7882 départ 16h02.</div>
-        </div>
-      </div>
-      <div class="act">
-        <div class="act-dot" style="background:#C4622D"></div>
-        <div class="act-time">21h22</div>
-        <div>
-          <div class="act-name">Arrivée Paris Gare de Lyon</div>
-          <div class="act-desc">La sœur vous récupère à la gare et file directement chez les parents. Pas de détour !</div>
-        </div>
-      </div>
-      <div class="act">
-        <div class="act-dot" style="background:#3a7d44"></div>
-        <div class="act-time g">Soir</div>
-        <div>
-          <div class="act-name">Phô chez maman — toute la famille</div>
-          <div class="act-desc">La meilleure façon de commencer le séjour autour d'un bon Phô en famille !</div>
-        </div>
-      </div>
-      <div class="nim-note"><strong>Nim</strong> — peut potentiellement rejoindre pour le dîner s'il est dispo.</div>
-    </div>
-  </div>
-
-  <!-- Mardi 21 -->
-  <div class="day-card" onclick="tog(this)">
-    <div class="day-row">
-      <div class="day-stripe" style="background:#7A9E7E"></div>
-      <div class="day-info">
-        <div class="day-date">Mardi 21 Avril</div>
-        <div class="day-name">Val d'Europe</div>
-        <div class="day-sub">Journée douce en famille</div>
-        <div class="day-weather"><span class="day-weather-icon">⛅</span><span class="day-weather-temp">15°C</span></div>
-      </div>
-      <div class="day-right"><span class="day-icon">🛍️</span><span class="day-chevron">⌄</span></div>
-    </div>
-    <div class="day-body">
-      <div class="act">
-        <div class="act-dot" style="background:#7A9E7E"></div>
-        <div class="act-time">10h00</div>
-        <div>
-          <div class="act-name">Centre Commercial Val d'Europe</div>
-          <div class="act-desc">À 10 min. Allées larges en poussette, climatisé, toutes les enseignes. Parfait pour décompresser sans se fatiguer.</div>
-        </div>
-      </div>
-      <div class="act">
-        <div class="act-dot" style="background:#7A9E7E"></div>
-        <div class="act-time">11h00</div>
-        <div>
-          <div class="act-name">Sea Life Aquarium</div>
-          <div class="act-desc">Idéal pour la petite de 2,5 ans. Ambiance calme et colorée — elle va adorer !</div>
-        </div>
-      </div>
-      <div class="act">
-        <div class="act-dot" style="background:#7A9E7E"></div>
-        <div class="act-time">12h30</div>
-        <div>
-          <div class="act-name">Déjeuner sur place</div>
-          <div class="act-desc">Large choix de restaurants dans le centre. Retour tranquille l'après-midi.</div>
-        </div>
-      </div>
-      <div class="nim-note"><strong>Nim</strong> — dispo le soir, peut se joindre pour un dîner.</div>
-    </div>
-  </div>
-
-  <!-- Mercredi 22 — DISNEY -->
-  <div class="day-card highlight" onclick="tog(this)">
-    <div class="day-row">
-      <div class="day-stripe" style="background:linear-gradient(180deg,#D4A853,#C4622D)"></div>
-      <div class="day-info">
-        <div class="day-date">Mercredi 22 Avril</div>
-        <div class="day-name">Disneyland Paris</div>
-        <div class="day-sub">Studios · Famille & sœurs · Dîner cousin</div>
-        <div class="day-weather"><span class="day-weather-icon">☀️</span><span class="day-weather-temp">17°C — parfait !</span></div>
-      </div>
-      <div class="day-right"><span class="day-icon">🎢</span><span class="day-chevron">⌄</span></div>
-    </div>
-    <div class="day-body">
-      <div class="special-tag">⭐ Journée phare</div>
-      <div class="act">
-        <div class="act-dot" style="background:#D4A853"></div>
-        <div class="act-time">9h30</div>
-        <div>
-          <div class="act-name">Walt Disney Studios — dès l'ouverture</div>
-          <div class="act-desc">Toi, ta femme, la petite de 2,5 ans et tes sœurs. Le bébé reste à la maison. RER A direct ou voiture + parking.</div>
-        </div>
-      </div>
-      <div class="act">
-        <div class="act-dot" style="background:#D4A853"></div>
-        <div class="act-time">Matin</div>
-        <div>
-          <div class="act-name">Worlds of Pixar & Cars</div>
-          <div class="act-desc">Toy Story Playland, Cars Quatre Roues Rallye — parfait pour 2,5 ans. Les sœurs accompagnent la petite partout !</div>
-        </div>
-      </div>
-      <div class="act">
-        <div class="act-dot" style="background:#D4A853"></div>
-        <div class="act-time">Après-midi</div>
-        <div>
-          <div class="act-name">Spectacles & rencontres de personnages</div>
-          <div class="act-desc">Le point fort des Studios. La petite va être dans un état second face à ses personnages préférés !</div>
-        </div>
-      </div>
-      <div class="act">
-        <div class="act-dot" style="background:#3a7d44"></div>
-        <div class="act-time g">Soir</div>
-        <div>
-          <div class="act-name">Retour & dîner avec le cousin</div>
-          <div class="act-desc">On rentre à temps pour déposer la petite et rejoindre le dîner famille.</div>
-        </div>
-      </div>
-      <div class="dinner-note"><strong>Dîner avec le cousin</strong> le soir.</div>
-      <div class="nim-note"><strong>Nim</strong> — peut rejoindre le dîner avec le cousin le soir.</div>
-      <div class="tip"><strong>Billets en ligne obligatoires</strong> — Avril = vacances scolaires, souvent complet. Réserve sur disneylandparis.com. Entrée moins de 3 ans : <strong>gratuite !</strong></div>
-    </div>
-  </div>
-
-  <!-- Jeudi 23 -->
-  <div class="day-card" onclick="tog(this)">
-    <div class="day-row">
-      <div class="day-stripe" style="background:#B0C4B1"></div>
-      <div class="day-info">
-        <div class="day-date">Jeudi 23 Avril</div>
-        <div class="day-name">Journée famille</div>
-        <div class="day-sub">Déj Luc & Margaux · Dîner parents</div>
-        <div class="day-weather"><span class="day-weather-icon">☀️</span><span class="day-weather-temp">20°C — superbe !</span></div>
-      </div>
-      <div class="day-right"><span class="day-icon">🍽️</span><span class="day-chevron">⌄</span></div>
-    </div>
-    <div class="day-body">
-      <div class="act">
-        <div class="act-dot" style="background:#B0C4B1"></div>
-        <div class="act-time">Matin</div>
-        <div>
-          <div class="act-name">Grasse matinée après Disney</div>
-          <div class="act-desc">Récup bien méritée pour tout le monde, surtout la petite qui a beaucoup marché la veille !</div>
-        </div>
-      </div>
-      <div class="act">
-        <div class="act-dot" style="background:#3a7d44"></div>
-        <div class="act-time g">Midi</div>
-        <div>
-          <div class="act-name">Déjeuner chez Luc & Margaux</div>
-          <div class="act-desc">Repas en famille, ambiance détendue.</div>
-        </div>
-      </div>
-      <div class="act">
-        <div class="act-dot" style="background:#B0C4B1"></div>
-        <div class="act-time">Après-midi</div>
-        <div>
-          <div class="act-name">Temps libre</div>
-          <div class="act-desc">Balade, sieste des enfants, profite avant le dîner du soir.</div>
-        </div>
-      </div>
-      <div class="act">
-        <div class="act-dot" style="background:#3a7d44"></div>
-        <div class="act-time g">Soir</div>
-        <div>
-          <div class="act-name">Dîner organisé par les parents</div>
-          <div class="act-desc">Belle soirée en famille avant leur départ aux States. Un moment à ne pas rater !</div>
-        </div>
-      </div>
-      <div class="nim-note"><strong>Nim</strong> — peut rejoindre le dîner des parents le soir.</div>
-    </div>
-  </div>
-
-  <!-- Vendredi 24 -->
-  <div class="day-card highlight" onclick="tog(this)">
-    <div class="day-row">
-      <div class="day-stripe" style="background:linear-gradient(180deg,#3D2B1F,#C4622D)"></div>
-      <div class="day-info">
-        <div class="day-date">Vendredi 24 Avril</div>
-        <div class="day-name">Paris</div>
-        <div class="day-sub">Trocadéro & Tour Eiffel · Dîner chez Micka</div>
-        <div class="day-weather"><span class="day-weather-icon">☀️</span><span class="day-weather-temp">18°C</span></div>
-      </div>
-      <div class="day-right"><span class="day-icon">🗼</span><span class="day-chevron">⌄</span></div>
-    </div>
-    <div class="day-body">
-      <div class="special-tag">🗼 Journée Paris</div>
-      <div class="act">
-        <div class="act-dot" style="background:#3D2B1F"></div>
-        <div class="act-time">Matin</div>
-        <div>
-          <div class="act-name">Jardins du Trocadéro</div>
-          <div class="act-desc">Grande pelouse face à la Tour Eiffel, parfait en poussette. La petite peut courir. Photos souvenir de famille au top. Sandwich ou pique-nique sur place.</div>
-        </div>
-      </div>
-      <div class="act">
-        <div class="act-dot" style="background:#C4622D"></div>
-        <div class="act-time">Après-midi</div>
-        <div>
-          <div class="act-name">Tour Eiffel</div>
-          <div class="act-desc">Montée si réservée, sinon la vue depuis le Champ-de-Mars est déjà magnifique. Réservation en ligne recommandée.</div>
-        </div>
-      </div>
-      <div class="act">
-        <div class="act-dot" style="background:#3a7d44"></div>
-        <div class="act-time g">Soir</div>
-        <div>
-          <div class="act-name">Retour & dîner chez Micka</div>
-          <div class="act-desc">Retour pour déposer les enfants, puis direction chez Micka pour la soirée.</div>
-        </div>
-      </div>
-      <div class="dinner-note"><strong>Dîner chez Micka</strong> le soir.</div>
-    </div>
-  </div>
-
-  <!-- Samedi & Dimanche -->
-  <div class="free-block">
-    <h3>Samedi 25 & Dimanche 26</h3>
-    <p>Deux jours libres, aucun programme imposé. Profitez de la famille, activité douce selon l'envie. Un repas prévu samedi soir. <strong>Nim sera là le weekend</strong> — parfait pour en profiter !</p>
-  </div>
-
-  <!-- Checklist -->
-  <div class="checklist-block">
-    <h3>À ne pas oublier</h3>
-    <div class="chk"><span class="chk-arrow">→</span><span>Billets Disney Studios réservés en ligne — entrée moins de 3 ans gratuite</span></div>
-    <div class="chk"><span class="chk-arrow">→</span><span>Organisation pour le bébé la journée Disney — il reste à la maison</span></div>
-    <div class="chk"><span class="chk-arrow">→</span><span>Poussette légère pour Paris (Trocadéro & Tour Eiffel)</span></div>
-    <div class="chk"><span class="chk-arrow">→</span><span>Réservation Tour Eiffel en ligne si montée prévue</span></div>
-    <div class="chk"><span class="chk-arrow">→</span><span>À Paris Gare de Lyon à <strong style="color:var(--gold)">09h00</strong> lundi matin — train 09h39</span></div>
-    <div class="chk"><span class="chk-arrow">→</span><span>Crème solaire & chapeau — beau temps prévu toute la semaine !</span></div>
-    <div class="chk"><span class="chk-arrow">→</span><span>Snacks & gourdes pour Disney</span></div>
-  </div>
-
-  <!-- Départ -->
-  <div class="depart-block">
-    <div class="d-icon">🚄</div>
-    <h3>Lundi 27 — Retour Perpignan</h3>
-    <p>Bagages prêts la veille.<br>Sois à Paris Gare de Lyon à <strong>09h00</strong>.</p>
-    <div class="depart-train">
-      <div class="depart-train-time">09:39 → 15:02</div>
-      <div class="depart-train-info">Ouigo n°7885 · 5h23 · Gare de Lyon → Perpignan</div>
-    </div>
-  </div>
-
 </div>
-<script>
-  function tog(card) {
-    const body = card.querySelector('.day-body');
-    const isOpen = body.classList.contains('open');
-    document.querySelectorAll('.day-body').forEach(b => b.classList.remove('open'));
-    document.querySelectorAll('.day-card').forEach(c => c.classList.remove('open'));
-    if (!isOpen) { body.classList.add('open'); card.classList.add('open'); }
-  }
-</script>
+
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- PAGE 2 : INTRODUCTION — POURQUOI ÇA CHANGE TOUT -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="page intro-page">
+  <div class="page-header">
+    <span class="page-number">01</span>
+    <span class="page-label">L'Art du Prompt — Guide Complet 2025</span>
+  </div>
+
+  <div class="section-eyebrow">Introduction</div>
+  <div class="section-title">Pourquoi un bon prompt<br>change <em>tout</em></div>
+  <div class="gap-sm"></div>
+
+  <p class="body-text">
+    Imaginez un employé ultra-talentueux, disponible 24h/24, capable de rédiger, coder, analyser, traduire, créer. Cet employé, c'est l'IA. Mais comme tout employé brillant, il a besoin d'<strong>instructions claires</strong> pour livrer un travail exceptionnel.
+  </p>
+  <p class="body-text" style="margin-top:3mm">
+    C'est exactement ça, un <strong>prompt</strong> : la commande que vous donnez à l'IA. La différence entre un prompt médiocre et un prompt maîtrisé, c'est la différence entre un brouillon inutilisable et un résultat professionnel prêt à l'emploi.
+  </p>
+
+  <div class="gap-sm"></div>
+
+  <div class="highlight-box">
+    <p>« 90% des gens utilisent l'IA au niveau débutant. Ce guide vous place dans le top 10% en moins d'une heure. »</p>
+  </div>
+
+  <div class="gap-md"></div>
+
+  <div class="two-col">
+    <div class="stat-card">
+      <span class="stat-number">10×</span>
+      <div class="stat-label">Meilleurs résultats avec un prompt structuré</div>
+    </div>
+    <div class="stat-card">
+      <span class="stat-number">3 min</span>
+      <div class="stat-label">Pour apprendre la formule de base</div>
+    </div>
+  </div>
+
+  <div class="gap-md"></div>
+
+  <!-- Visual: journey from chaos to clarity -->
+  <div style="background: var(--noir-card); border: 1px solid var(--border); border-radius:6px; padding:5mm 7mm;">
+    <div class="section-eyebrow" style="margin-bottom:4mm;">Ce que vous allez maîtriser</div>
+    <div style="display:flex; flex-direction:column; gap:2.5mm;">
+      <div style="display:flex; align-items:center; gap:3mm; font-size:9pt; color:rgba(245,240,232,0.8);">
+        <span style="color:var(--gold); font-size:11pt; font-weight:700;">→</span>
+        <span>La <strong>structure exacte</strong> d'un prompt qui fonctionne à chaque fois</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:3mm; font-size:9pt; color:rgba(245,240,232,0.8);">
+        <span style="color:var(--gold); font-size:11pt; font-weight:700;">→</span>
+        <span>Les <strong>5 règles d'or</strong> des meilleurs prompteurs mondiaux</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:3mm; font-size:9pt; color:rgba(245,240,232,0.8);">
+        <span style="color:var(--gold); font-size:11pt; font-weight:700;">→</span>
+        <span>Des <strong>exemples concrets</strong> pour votre quotidien (travail, création, business)</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:3mm; font-size:9pt; color:rgba(245,240,232,0.8);">
+        <span style="color:var(--gold); font-size:11pt; font-weight:700;">→</span>
+        <span>La <strong>formule magique</strong> que vous pourrez appliquer dès aujourd'hui</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- PAGE 3 : C'EST QUOI UN PROMPT -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="page what-page">
+  <div class="page-header">
+    <span class="page-number">02</span>
+    <span class="page-label">L'Art du Prompt — Guide Complet 2025</span>
+  </div>
+
+  <div class="section-eyebrow">Les fondamentaux</div>
+  <div class="section-title">Anatomie d'un<br><em>prompt parfait</em></div>
+  <div class="gap-sm"></div>
+
+  <p class="body-text">
+    Un prompt, c'est simplement le texte que vous écrivez à l'IA. Mais derrière cette simplicité se cachent 4 composants clés qui font toute la différence. Chaque élément manquant = résultat dégradé.
+  </p>
+
+  <div class="gap-sm"></div>
+
+  <div class="prompt-anatomy">
+    <span class="role-tag">[RÔLE] Tu es un expert en marketing digital avec 10 ans d'expérience.</span><br>
+    <span class="context-tag">[CONTEXTE] Je lance une boutique en ligne de cosmétiques naturels, budget limité.</span><br>
+    <span class="task-tag">[TÂCHE] Rédige 3 idées de publications Instagram pour attirer mes premières clientes.</span><br>
+    <span class="format-tag">[FORMAT] Chaque post : 1 accroche + 3 bullets + 1 call-to-action. Ton chaleureux.</span>
+  </div>
+
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:#56B6C2"></div> Rôle</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#98C379"></div> Contexte</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#E5C07B"></div> Tâche</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#C678DD"></div> Format attendu</div>
+  </div>
+
+  <div class="gap-md"></div>
+
+  <!-- Before / After -->
+  <div class="section-eyebrow" style="margin-bottom:3mm;">Avant / Après — La différence en un coup d'œil</div>
+
+  <div class="before-after">
+    <div class="bad-box">
+      <span class="box-label">❌ Prompt débutant</span>
+      <div class="box-content">
+        "Écris moi un post Instagram."
+      </div>
+      <div class="case-result" style="margin-top:3mm;">Résultat : générique, inutilisable, sans âme.</div>
+    </div>
+    <div class="good-box">
+      <span class="box-label">✅ Prompt expert</span>
+      <div class="box-content">
+        "Tu es un copywriter lifestyle. Rédige un post Instagram pour une boutique de bougies artisanales ciblant les femmes 25-40 ans. Format : accroche émotionnelle + 3 bénéfices + CTA. Ton : chaleureux et poétique."
+      </div>
+      <div class="case-result" style="margin-top:3mm;"><strong>Résultat :</strong> post prêt à publier, conversationnel, engageant.</div>
+    </div>
+  </div>
+
+  <div class="gap-sm"></div>
+
+  <div class="highlight-box">
+    <p>La règle n°1 : l'IA ne lit pas dans vos pensées. Tout ce que vous ne lui dites pas, elle l'invente — souvent mal.</p>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- PAGE 4 : LES 5 RÈGLES D'OR -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="page rules-page">
+  <div class="page-header">
+    <span class="page-number">03</span>
+    <span class="page-label">L'Art du Prompt — Guide Complet 2025</span>
+  </div>
+
+  <div class="section-eyebrow">Les règles d'or</div>
+  <div class="section-title">Les <em>5 commandements</em><br>du prompteur expert</div>
+
+  <div class="rules-grid">
+
+    <div class="rule-card">
+      <div class="rule-number">01</div>
+      <div class="rule-body">
+        <div class="rule-title">Donne-lui un rôle précis</div>
+        <p class="rule-desc">L'IA s'adapte à l'identité que vous lui donnez. Un "expert" produit systématiquement mieux qu'un "assistant".</p>
+        <span class="rule-example">→ "Tu es un avocat spécialisé en droit des contrats..."</span>
+      </div>
+    </div>
+
+    <div class="rule-card">
+      <div class="rule-number">02</div>
+      <div class="rule-body">
+        <div class="rule-title">Sois ultra-spécifique</div>
+        <p class="rule-desc">Vague = résultat vague. Chaque détail que vous ajoutez est un filtre qui rapproche l'IA de ce que vous voulez vraiment.</p>
+        <span class="rule-example">→ Précisez le secteur, l'audience, le ton, la longueur.</span>
+      </div>
+    </div>
+
+    <div class="rule-card">
+      <div class="rule-number">03</div>
+      <div class="rule-body">
+        <div class="rule-title">Impose le format de sortie</div>
+        <p class="rule-desc">Dites-lui comment vous voulez le résultat : bullet points, tableau, email, script, JSON... L'IA respecte vos contraintes.</p>
+        <span class="rule-example">→ "Réponds en 5 bullet points de 2 lignes max."</span>
+      </div>
+    </div>
+
+    <div class="rule-card">
+      <div class="rule-number">04</div>
+      <div class="rule-body">
+        <div class="rule-title">Donne des exemples</div>
+        <p class="rule-desc">Montrez-lui un exemple de ce que vous aimez (ou n'aimez pas). C'est la façon la plus rapide d'aligner l'IA sur votre vision.</p>
+        <span class="rule-example">→ "Voici un exemple de ce que j'aime : [exemple]"</span>
+      </div>
+    </div>
+
+    <div class="rule-card">
+      <div class="rule-number">05</div>
+      <div class="rule-body">
+        <div class="rule-title">Itère, affine, perfectionne</div>
+        <p class="rule-desc">Un bon prompt se construit en 2-3 échanges. Si le résultat n'est pas parfait, dites-lui ce qui cloche et demandez une version améliorée.</p>
+        <span class="rule-example">→ "Bien, maintenant rends-le plus percutant et raccourcis de 30%."</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- PAGE 5 : LA FORMULE MAGIQUE -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="page formula-page">
+  <div class="page-header">
+    <span class="page-number">04</span>
+    <span class="page-label">L'Art du Prompt — Guide Complet 2025</span>
+  </div>
+
+  <div class="section-eyebrow">La formule</div>
+  <div class="section-title">Le framework <em>RCTF</em><br>— copiez-collez, adaptez, gagnez</div>
+  <div class="gap-sm"></div>
+
+  <p class="body-text">Quatre blocs. Un résultat exceptionnel à chaque fois. Mémorisez RCTF et vous n'aurez plus jamais un prompt raté.</p>
+
+  <div class="gap-md"></div>
+
+  <div class="formula-blocks">
+    <div class="formula-row">
+      <div class="formula-block" style="border-top: 2px solid #56B6C2;">
+        <span class="formula-block-label" style="color:#56B6C2;">R — Rôle</span>
+        <div class="formula-block-content">
+          Qui doit être l'IA ?<br>
+          <em style="color:var(--text-muted); font-size:8pt;">"Tu es un [profession] avec [X ans] d'expérience en [domaine]."</em>
+        </div>
+      </div>
+      <div class="formula-plus">+</div>
+      <div class="formula-block" style="border-top: 2px solid #98C379;">
+        <span class="formula-block-label" style="color:#98C379;">C — Contexte</span>
+        <div class="formula-block-content">
+          Quelle est la situation ?<br>
+          <em style="color:var(--text-muted); font-size:8pt;">"Je suis [votre profil], je dois [situation actuelle]."</em>
+        </div>
+      </div>
+    </div>
+    <div class="formula-row">
+      <div class="formula-block" style="border-top: 2px solid #E5C07B;">
+        <span class="formula-block-label" style="color:#E5C07B;">T — Tâche</span>
+        <div class="formula-block-content">
+          Que doit-il produire ?<br>
+          <em style="color:var(--text-muted); font-size:8pt;">"Rédige / Analyse / Crée / Explique [livrable précis]."</em>
+        </div>
+      </div>
+      <div class="formula-plus">+</div>
+      <div class="formula-block" style="border-top: 2px solid #C678DD;">
+        <span class="formula-block-label" style="color:#C678DD;">F — Format</span>
+        <div class="formula-block-content">
+          Comment le veux-tu ?<br>
+          <em style="color:var(--text-muted); font-size:8pt;">"Format : [structure]. Ton : [style]. Longueur : [X mots]."</em>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="formula-result">
+    <span class="formula-result-label">= PROMPT PARFAIT</span>
+    <div class="formula-result-text">"Tu es un [rôle]. [Contexte de la situation]. [Tâche précise]. Réponds en [format], ton [style], [contrainte de longueur]."</div>
+  </div>
+
+  <div class="gap-md"></div>
+
+  <!-- Example full prompt -->
+  <div class="prompt-anatomy" style="border:1px solid rgba(201,169,110,0.4);">
+    <span class="role-tag">Tu es un consultant en communication B2B.</span>
+    <span class="context-tag"> Je suis freelance graphiste, je prospecte des PME locales.</span>
+    <span class="task-tag"> Rédige un email de prospection froid pour proposer mes services de création d'identité visuelle.</span>
+    <span class="format-tag"> Format : objet accrocheur + corps en 4 phrases max + CTA. Ton professionnel mais humain. Pas de formules bateau.</span>
+  </div>
+
+  <div class="gap-sm"></div>
+  <p class="body-text" style="font-style:italic; opacity:0.7; font-size:8.5pt;">
+    ↑ Ce prompt prend 30 secondes à écrire. L'IA vous livre un email prêt à envoyer. Sans ce prompt, vous obtenez du remplissage générique.
+  </p>
+</div>
+
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- PAGE 6 : CAS PRATIQUES -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="page cases-page">
+  <div class="page-header">
+    <span class="page-number">05</span>
+    <span class="page-label">L'Art du Prompt — Guide Complet 2025</span>
+  </div>
+
+  <div class="section-eyebrow">Cas pratiques</div>
+  <div class="section-title">6 prompts prêts à<br><em>copier-coller</em></div>
+
+  <div class="cases-grid">
+
+    <div class="case-card">
+      <div class="case-header">
+        <span class="case-icon">✍️</span>
+        <span class="case-title">Rédaction de contenu</span>
+      </div>
+      <div class="case-body">
+        <div class="case-prompt">Tu es un rédacteur web SEO. Rédige une introduction de blog (150 mots) sur [sujet], pour une audience de [profil]. Ton conversationnel, accroche avec une question provocante.</div>
+        <div class="case-result"><strong>→ Résultat :</strong> Article prêt, optimisé, engageant.</div>
+      </div>
+    </div>
+
+    <div class="case-card">
+      <div class="case-header">
+        <span class="case-icon">📱</span>
+        <span class="case-title">Post Instagram / Réseaux</span>
+      </div>
+      <div class="case-body">
+        <div class="case-prompt">Tu es social media manager. Crée 3 variations de caption Instagram pour [produit/service]. Audience : [profil]. Format : accroche + corps + hashtags. Ton [style].</div>
+        <div class="case-result"><strong>→ Résultat :</strong> 3 posts testables immédiatement.</div>
+      </div>
+    </div>
+
+    <div class="case-card">
+      <div class="case-header">
+        <span class="case-icon">📧</span>
+        <span class="case-title">Email professionnel</span>
+      </div>
+      <div class="case-body">
+        <div class="case-prompt">Tu es expert en communication professionnelle. Rédige un email de [relance / demande / refus] à [destinataire]. Contexte : [situation]. Sois direct, poli, sans longueur inutile.</div>
+        <div class="case-result"><strong>→ Résultat :</strong> Email envoyable en 2 min.</div>
+      </div>
+    </div>
+
+    <div class="case-card">
+      <div class="case-header">
+        <span class="case-icon">🔍</span>
+        <span class="case-title">Analyse & Recherche</span>
+      </div>
+      <div class="case-body">
+        <div class="case-prompt">Tu es analyste stratégique. Analyse les 3 forces et 3 faiblesses de [entreprise / idée / marché] en 2025. Format : tableau comparatif. Sois objectif et précis.</div>
+        <div class="case-result"><strong>→ Résultat :</strong> Analyse structurée en secondes.</div>
+      </div>
+    </div>
+
+    <div class="case-card">
+      <div class="case-header">
+        <span class="case-icon">💡</span>
+        <span class="case-title">Brainstorming / Idées</span>
+      </div>
+      <div class="case-body">
+        <div class="case-prompt">Tu es un créatif en agence de pub. Génère 10 idées de campagnes originales pour [produit] ciblant [audience]. Pas de clichés. Chaque idée en 2 lignes max.</div>
+        <div class="case-result"><strong>→ Résultat :</strong> 10 concepts exploitables.</div>
+      </div>
+    </div>
+
+    <div class="case-card">
+      <div class="case-header">
+        <span class="case-icon">🎯</span>
+        <span class="case-title">Script vidéo / Podcast</span>
+      </div>
+      <div class="case-body">
+        <div class="case-prompt">Tu es producteur de contenu YouTube. Écris un script de 60 secondes pour [sujet]. Format : accroche choc (5s) + problème (10s) + solution (35s) + CTA (10s). Ton dynamique.</div>
+        <div class="case-result"><strong>→ Résultat :</strong> Script tournage-ready.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="gap-sm"></div>
+  <div class="highlight-box">
+    <p>Astuce pro : remplacez chaque [bracket] par votre situation réelle. Ces templates fonctionnent sur ChatGPT, Claude, Gemini et tous les autres outils IA.</p>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- PAGE 7 : COUVERTURE ARRIÈRE -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="page back-cover">
+  <div class="back-bg"></div>
+  <div class="cover-corner tl"></div>
+  <div class="cover-corner tr"></div>
+  <div class="cover-corner bl"></div>
+  <div class="cover-corner br"></div>
+
+  <div class="back-content">
+
+    <div class="back-logo">PROMPTMASTER</div>
+    <div class="back-tagline">Maîtrisez l'IA. Dominez votre domaine.</div>
+
+    <div class="ornament" style="width:140mm;">
+      <div class="ornament-line"></div>
+      <div class="ornament-diamond"></div>
+      <div class="ornament-line right"></div>
+    </div>
+
+    <div class="back-quote">
+      « La différence entre ceux qui subissent l'IA<br>et ceux qui <em>l'exploitent</em>,<br>c'est un prompt bien écrit. »
+    </div>
+
+    <div class="ornament" style="width:140mm;">
+      <div class="ornament-line"></div>
+      <div class="ornament-diamond"></div>
+      <div class="ornament-line right"></div>
+    </div>
+
+    <!-- What you've learned -->
+    <div style="background:var(--noir-card); border:1px solid var(--border); border-radius:6px; padding:6mm 8mm; width:150mm;">
+      <div class="section-eyebrow" style="margin-bottom:4mm; text-align:center;">Ce que vous maîtrisez maintenant</div>
+      <div class="checklist">
+        <div class="check-item">
+          <span class="check-mark">◆</span>
+          <span>L'anatomie d'un prompt parfait : Rôle, Contexte, Tâche, Format</span>
+        </div>
+        <div class="check-item">
+          <span class="check-mark">◆</span>
+          <span>Les 5 règles d'or des prompteurs experts mondiaux</span>
+        </div>
+        <div class="check-item">
+          <span class="check-mark">◆</span>
+          <span>Le framework RCTF applicable à n'importe quelle situation</span>
+        </div>
+        <div class="check-item">
+          <span class="check-mark">◆</span>
+          <span>6 templates prêts à l'emploi pour votre quotidien professionnel</span>
+        </div>
+        <div class="check-item">
+          <span class="check-mark">◆</span>
+          <span>La méthode pour itérer et perfectionner chaque résultat IA</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-box">Passez au niveau supérieur →</div>
+
+    <div style="text-align:center;">
+      <div class="mono" style="font-size:7.5pt; color:var(--text-muted); letter-spacing:0.15em;">promptmaster.fr · Édition 2025</div>
+      <div class="mono" style="font-size:7pt; color:rgba(122,122,140,0.5); margin-top:2mm; letter-spacing:0.1em;">Tous droits réservés — Usage personnel uniquement</div>
+    </div>
+
+  </div>
+</div>
+
 </body>
 </html>
